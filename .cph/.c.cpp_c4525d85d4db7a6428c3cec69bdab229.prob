@@ -1,0 +1,1 @@
+{"name":"Local: c","url":"d:\\my_react_journey\\SahansBlogApp\\c.cpp","tests":[{"id":1713366150503,"input":"3\n1\n1\n4\n1 3 2 1\n7\n2 4 5 1 4 5 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\my_react_journey\\SahansBlogApp\\c.cpp","group":"local","local":true}
