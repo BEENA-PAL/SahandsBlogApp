@@ -35,7 +35,7 @@ function SignUp() {
 
       setLoading(false);
       if (res.ok) {
-        navigate("/sign-in");
+        navigate("/");
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -99,12 +99,12 @@ function SignUp() {
               type="submit"
               className="mt-5 text-center"
             >
-              Signup
+              Sign Up
             </Button>
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>already have account</span>{" "}
-            <Link to="/sign-in" className="text-blue-500">
+            <Link to="/" className="text-blue-500">
               Sign In
             </Link>
           </div>
