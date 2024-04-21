@@ -1,20 +1,18 @@
 import { Alert, Button, Label, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-export { useDispatch, useSelector } from "react-redux";
 import {
   signInStart,
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 function SignIn() {
   const [formData, setformData] = useState({});
 
-  const { loading, error: errorMessage } = useSelector((state) => {
-    state.user;
-  });
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,7 +47,7 @@ function SignIn() {
         navigate("/");
       }
     } catch (error) {
-      dispatch(signInFailure(error.message));
+      // dispatch(signInFailure(error.message));
     }
   };
   return (
@@ -114,7 +112,6 @@ function SignIn() {
               {errorMessage}
             </Alert>
           )}
-          {console.log(errorMessage)}
         </div>
       </div>
     </div>
