@@ -64,7 +64,7 @@ export const signin = async (req, res, next) => {
 };
 
 export const google = async (req, res, next) => {
-  const { email, name, googlePhotoUrl } = req.body;
+  let { email, name, googlePhotoUrl } = req.body;
 
   try {
     const user = await User.findOne({ email });
@@ -82,15 +82,13 @@ export const google = async (req, res, next) => {
         .json(rest);
     } else {
       const generatedPassword =
-        Math.ransom().toString(36).slice(-8) +
-        Math.ransom().toString(36).slice(-8);
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8);
 
-      const hashedPassword = bcryptjs.hashSync(generatedpassword);
+      const hashedPassword = bcryptjs.hashSync(generatedPassword);
 
       const newUser = new User({
-        username:
-          name.toLowerCase().split(" ").json("") +
-          Math.random().toString(9).slice(-4),
+        username: name + Math.random().toString(9).slice(-4),
         email,
         password: hashedPassword,
         profilePicture: googlePhotoUrl,
@@ -104,7 +102,7 @@ export const google = async (req, res, next) => {
 
       res
         .status(200)
-        .cookies("access-token", token, { httpOnly: true })
+        .cookie("access-token", token, { httpOnly: true })
         .json(rest);
     }
   } catch (error) {

@@ -1,38 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
-public:
-    int numberOfSpecialChars(string word)
-    {
-        vector<int> arr(26, -1);
-        vector<int> brr(26, -1);
-
-        for (int i = 0; i < word.size(); i++)
-        {
-            if (word[i] >= 'A' && word[i] <= 'Z' && arr[word[i] - 'A'] == -1)
-            {
-                arr[word[i] - 'A'] = i;
-            }
-            if (word[i] >= 'a' && word[i] <= 'z')
-            {
-
-                brr[word[i] - 'a'] = i;
-            }
-        }
-        int ans = 0;
-        for (int i = 0; i < 26; i++)
-        {
-
-            if (brr[i] != -1 && arr[i] != -1 && brr[i] < arr[i])
-            {
-                ans++;
-            }
-        }
-    }
-};
-
 #define endl '\n'
 #define int long long
 
@@ -48,6 +16,10 @@ signed main()
     cin >> tc;
     while (tc--)
     {
+        string s = "5000";
+        string temp = s.substr(0, 1);
+        //  + to_string((s[0] - '0' + 1) % 10) + s.substr(1);
+        cout << temp << endl;
     }
     return 0;
 }

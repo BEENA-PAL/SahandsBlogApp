@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import OAuth from "../components/OAuth.jsx";
+
 function SignIn() {
   const [formData, setformData] = useState({});
 
@@ -18,21 +19,21 @@ function SignIn() {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setformData({ ...formData, [e.target.id]: e.target.value });
+    setformData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!formData.email || !formData.password) {
-      return dispatch(signInFailure("please fill all the fileds"));
+      return dispatch(signInFailure("please fill all the fields"));
     }
+
     try {
       dispatch(signInStart());
-
       const res = await fetch("/api/auth/signin", {
         method: "POST",
-        headers: { "content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
