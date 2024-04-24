@@ -66,7 +66,9 @@ export default function Header() {
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
             <Dropdown.Divider />
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Link to="/sign-in">
+              <Dropdown.Item>Sign out</Dropdown.Item>
+            </Link>
           </Dropdown>
         ) : (
           <Link to="/sign-in">
