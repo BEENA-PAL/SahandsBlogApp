@@ -1,42 +1,33 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 mongoose
   .connect(process.env.MONGO)
   .then(() => {
-    console.log("mongodb is connected");
+    console.log("MongoDb is connected");
   })
-  .catch((e) => {
-    console.log(e);
+  .catch((err) => {
+    console.log(err);
   });
-
 const app = express();
 
-// for sending json data to backend
-// we use this middleware to send json data to backend
 app.use(express.json());
+app.use(cookieParser());
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(3000, () => {
+  console.log("Server is running on port 3000!");
 });
-
-// router
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
-
-//middle ware to handle error from the server side
-
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  const message = err.message || "internal server error";
-
+  const message = err.message || "Internal Server Error";
   res.status(statusCode).json({
     success: false,
     statusCode,
